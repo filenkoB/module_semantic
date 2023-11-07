@@ -1,0 +1,14 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?city ?city_name ?city_area
+WHERE {
+    ?city rdf:type dbo:City ;
+        rdfs:label ?city_name ;
+        dbo:country dbr:Ukraine ;
+        dbo:areaTotal ?city_area .
+    FILTER(LANG(?city_name)='uk') .
+}
+ORDER BY DESC (?city_area)
+LIMIT 1
